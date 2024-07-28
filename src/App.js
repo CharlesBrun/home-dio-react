@@ -6,6 +6,7 @@ import {
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Feed from './pages/Feed';
+import Register from './pages/Register';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: "/feed",
     element: <Feed />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
   },
 ]);
 

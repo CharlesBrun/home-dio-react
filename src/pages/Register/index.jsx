@@ -5,16 +5,15 @@ import Button from '../../components/Button';
 import { 
   Column,
   Container, 
-  EsqueciText, 
   SubTitleLogin, 
-  Row, 
   Title, 
   TitleLogin, 
   Wrapper,
-  RedirectButton
+  AgreementTerm,
+  HasText,
 } from './styles';
 import Input from '../../components/Input';
-import { MdEmail, MdLock } from 'react-icons/md';
+import { MdEmail, MdLock, MdOutlinePerson } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup"
@@ -24,13 +23,14 @@ import { api } from '../../services/api'
 
 const schema = yup
   .object({
+    name: yup.string().min(2, 'No minimo 2 caracteres').required('Campo obrigatorio'),
     email: yup.string().email('Email não é valido').required('Campo obrigatorio'),
     password: yup.string().min(3, 'No minimo 3 caracteres').required('Campo obrigatorio'),
   })
   .required()
 
 
-function Login() {
+function Register() {
 
   const navigate = useNavigate();
 
@@ -42,19 +42,18 @@ function Login() {
   console.log(isValid, errors);
   const onSubmit = async formData => {
     try {
-      const { data } = await api.get(`/users?email=${formData.email}&senha=${formData.password}`)
-      if(data.length === 1){
-        navigate('/feed');
+      const { data } = await api.post(`/users`, {email: formData.email, name: formData.name, password: formData.password});
+      if(data){
+        navigate('/login');
       }
     } catch (error) {
         console.log("Houve um erro, tente novamente:" + error);
     }
   };
 
-  const toRegisterPage = () => {
-    navigate('/register');
+  const toLoginPage = () => {
+    navigate('/login');
   }
-
 
   return (
     <>
@@ -67,17 +66,18 @@ function Login() {
           </Column>
           <Column>
             <Wrapper>
-              <TitleLogin>Faça seu cadastro</TitleLogin>
-              <SubTitleLogin>Faça seu login e make the change._</SubTitleLogin>
+              <TitleLogin>Comece agora grátis</TitleLogin>
+              <SubTitleLogin>Crie sua conta e make the change._</SubTitleLogin>
               <form onSubmit={handleSubmit(onSubmit)}>
+                <Input errorMessage={ errors.name?.message} control={control} name={"name"} placeholder={"Nome completo"} leftIcon={<MdOutlinePerson />}/>
                 <Input errorMessage={ errors.email?.message} control={control} name={"email"} placeholder={"E-mail"} leftIcon={<MdEmail />}/>
                 <Input errorMessage={ errors.password?.message} control={control} name={"password"} placeholder={"Senha"} type={"password"} leftIcon={<MdLock />}/>
-                <Button title={"Entrar"} type="submit" variant='secondary'/>
+                <Button title={"Criar minha conta"} type="submit" variant='secondary'/>
               </form>
-              <Row>
-                <EsqueciText>Esqueci minha senha</EsqueciText>
-                <RedirectButton onClick={toRegisterPage} type={"button"}>Criar Conta</RedirectButton>
-              </Row>
+              <Column>
+                <AgreementTerm>Ao clicar em "criar minha conta grátis", declaro que aceito as Políticas de Privacidade e os Termos de Uso da DIO.</AgreementTerm>
+                <HasText>Já tenho conta. <button onClick={toLoginPage} type={"button"}>Fazer login</button></HasText>
+              </Column>
             </Wrapper>
 
           </Column>
@@ -86,4 +86,4 @@ function Login() {
   )
 }
 
-export default Login
+export default Register

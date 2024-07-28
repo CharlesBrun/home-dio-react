@@ -1,6 +1,40 @@
 {
-    "users": [
-        {"id":1, "name": "Charles", "email": "charles@email.com", "senha":"123456"},
-        {"id":2, "name": "Joao", "email": "joao@email.com", "senha":"123456"}
-    ]
+  "users": [
+    {
+      "id": "1",
+      "name": "Charles",
+      "email": "charles@email.com",
+      "senha": "123456"
+    },
+    {
+      "id": "2",
+      "name": "Joao",
+      "email": "joao@email.com",
+      "senha": "123456"
+    },
+    {
+      "id": "77be",
+      "email": "veri-frontend@gmail.com",
+      "name": "charles viegas",
+      "password": "1234"
+    },
+    {
+      "id": "4553",
+      "email": "veri-frontend@gmail.com",
+      "name": "charles viegas",
+      "password": "1234"
+    },
+    {
+      "id": "a471",
+      "email": "veri-frontend@gmail.com",
+      "name": "teste",
+      "password": "1234"
+    },
+    {
+      "id": "0fd2",
+      "email": "veri-frontend@gmail.com",
+      "name": "123",
+      "password": "1234"
+    }
+  ]
 }

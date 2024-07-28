@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
     width: 100%;
@@ -55,7 +56,7 @@ export const Menu = styled.a`
     text-decoration: none;
 `
 
-export const MenuRight = styled.a`
+export const MenuRight = styled.p`
     font-family: 'Open Sans';
     font-style: normal;
     font-size: 12px;
@@ -64,6 +65,14 @@ export const MenuRight = styled.a`
     margin-right: 12px;
     text-decoration: none;
 `
+
+export const StyledLink = styled(Link)`
+    text-decoration: none;
+
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+    }
+`;
 
 export const UserPicture = styled.img`
     width: 32px;

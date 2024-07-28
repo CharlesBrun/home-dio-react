@@ -9,7 +9,8 @@ import {
     MenuRight, 
     Row, 
     UserPicture, 
-    Wrapper 
+    Wrapper,
+    StyledLink
 } from './styles'
 
 
@@ -18,7 +19,9 @@ const Header = ({autenticado}) => {
     <Wrapper>
         <Container>
             <Row>
-                <img src={logo} alt='logo da dio'/>
+                <StyledLink to={'/'}>
+                    <img src={logo} alt='logo da dio'/>
+                </StyledLink>
                 {autenticado?(
                     <>
                         <BuscarInputContainer>
@@ -35,9 +38,15 @@ const Header = ({autenticado}) => {
                     <UserPicture src={"https://avatars.githubusercontent.com/u/62218302?s=400&u=f5381cd9f7aa06bfa7fabab31447e83b551fe66c&v=4"}/>
                 ):                    
                 (<>
-                <MenuRight href='#'>Home</MenuRight>
-                <Button title="Entrar" />
-                <Button title="Cadastrar" />
+                    <StyledLink to={'/'}>
+                        <MenuRight href='/'>Home</MenuRight>
+                    </StyledLink>
+                    <StyledLink to={'/login'}>
+                        <Button type={"button"} title="Entrar" />
+                    </StyledLink>
+                    <StyledLink to={'/register'}>
+                        <Button type={"button"} title="Cadastrar" />
+                    </StyledLink>
                 </>)}
             </Row>
         </Container>

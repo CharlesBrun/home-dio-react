@@ -59,42 +59,40 @@ export const SubTitleLogin = styled.p`
     line-height: 25px;
 `
 
-export const EsqueciText = styled.p`
+export const AgreementTerm = styled.p`
     font-family: 'Open Sans';
     font-style: normal;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 19px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    margin-top: 1.2em;
 
-    color: #E5E044
+    color: #FFFFFF;
 `
 
-export const CriarText = styled.p`
+export const HasText = styled.p`
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 700;
     font-size: 14px;
     line-height: 19px;
+    margin: 10px 0;
+    color: #FFFFFF;
 
-    color: #E23DD7;
-    &:hover {
-        color: #E23DD780;
+    button {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+
+        color: #23DD7A;
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 19px;
     }
-`
 
-export const RedirectButton = styled.button`
-    background: transparent;
-    border: none;
-    cursor: pointer;
-
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 19px;
-
-    color: #E23DD7;
-    &:hover {
-        color: #E23DD780;
+    button:hover {
+        color: #23DD7A80;
     }
 `
