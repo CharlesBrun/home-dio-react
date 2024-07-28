@@ -15,10 +15,12 @@ import {
 } from './styles';
 import Input from '../../components/Input';
 import { MdEmail, MdLock } from 'react-icons/md';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
+import { api } from '../../services/api'
+
 
 const schema = yup
   .object({
@@ -30,7 +32,7 @@ const schema = yup
 
 function Login() {
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
 
   const { control, handleSubmit, formState:{errors, isValid}} = useForm({
@@ -38,12 +40,16 @@ function Login() {
     mode: 'onChange'
   });
   console.log(isValid, errors);
-  const onSubmit = data => console.log(data);
-
-
-  // const handleClickSignIn = () => {
-  //   navigate('/feed');
-  // }
+  const onSubmit = async formData => {
+    try {
+      const { data } = await api.get(`/users?email=${formData.email}&senha=${formData.password}`)
+      if(data.length === 1){
+        navigate('/feed');
+      }
+    } catch (error) {
+        console.log("Houve um erro, tente novamente:" + error);
+    }
+  };
 
   return (
     <>
